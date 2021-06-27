@@ -36,8 +36,8 @@ class MatchApiV5(NamedEndpoint):
         self,
         region: str,
         puuid: str,
-        queue: int,
-        type: str,
+        queue: int = None,
+        type: str = None,
         start: int = None,
         count: int = None,
     ):
