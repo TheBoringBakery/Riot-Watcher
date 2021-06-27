@@ -36,6 +36,8 @@ class MatchApiV5(NamedEndpoint):
         self,
         region: str,
         puuid: str,
+        queue: int,
+        type: str,
         start: int = None,
         count: int = None,
     ):
@@ -59,16 +61,11 @@ class MatchApiV5(NamedEndpoint):
         no maximum limit on their range.
 
         :param string region:               The region to execute this request on
-        :param string encrypted_account_id: The account ID.
-        :param Set[int] queue:              Set of queue IDs for which to filtering matchlist.
-        :param long begin_time:             The begin time to use for filtering matchlist specified
-                                            as epoch milliseconds.
-        :param long end_time:               The end time to use for filtering matchlist specified
-                                            as epoch milliseconds.
+        :param string puuid:                The account ID.
+        :param int queue:                   The queue IDs for which to filtering matchlist.
+        :param str type:                    The type of the match for which to filter matchlist. (is mutually inclusive of the queue filter)
         :param int begin_index:             The begin index to use for filtering matchlist.
-        :param int end_index:               The end index to use for filtering matchlist.
-        :param Set[int] season:             Set of season IDs for which to filtering matchlist.
-        :param Set[int] champion:           Set of champion IDs for which to filtering matchlist.
+        :param int end_index:               The end index to use for filtering matchlist (Default: 20, Accepted range 0-100).
 
         :returns: MatchlistDto
         """
@@ -77,8 +74,10 @@ class MatchApiV5(NamedEndpoint):
             region,
             MatchApiV5Urls.matchlist_by_puuid,
             puuid=puuid,
-            start = start,
-            count = count
+            queue=queue,
+            type=type,
+            start=start,
+            count=count
         )
 
     def timeline_by_match(self, region: str, match_id: int):
