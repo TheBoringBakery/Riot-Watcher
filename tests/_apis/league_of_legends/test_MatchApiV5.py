@@ -62,6 +62,8 @@ class TestMatchApiV5:
         region = "sfsfa"
         puuid = "15357"
 
+        queue = "qwrqe"
+        type = "sfdedg"
         start = "asfaf"
         count = "afasf"
 
@@ -78,6 +80,8 @@ class TestMatchApiV5:
             region,
             f"https://{region}.api.riotgames.com/lol/match/v5/matches/by-puuid/{puuid}/ids",
             {
+                "queue": queue,
+                "type": type,
                 "start": start,
                 "count": count,                
             },
